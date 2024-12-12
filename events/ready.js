@@ -123,7 +123,7 @@ module.exports = {
 
 		// Function to send a message for Saturday
 		function sendSaturdayMessage() {
-			const channel = client.channels.cache.get('1313418772446711828'); // Replace with your channel ID
+			const channel = client.channels.cache.get('1123143493762678786'); // Replace with your channel ID
 			if (channel) {
 			channel.send('https://tenor.com/view/serj-tankian-serj-saturday-system-of-a-down-soad-gif-5152056670570682786');
 			} else {
@@ -131,7 +131,6 @@ module.exports = {
 			}
 		}
 		
-
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 		scheduleMessage();
 	},
