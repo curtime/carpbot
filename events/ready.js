@@ -28,16 +28,17 @@ module.exports = {
 			const mondayDelay = getNextTargetDay(1); // 1 = Monday
 			const tuesdayDelay = getNextTargetDay(2); // 2 = Tuesday
 			const wednesdayDelay = getNextTargetDay(3); // 3 = Wednesday
+			const thursdayDelay = getNextTargetDay(4); // 5 = Friday
 			const fridayDelay = getNextTargetDay(5); // 5 = Friday
 			const saturdayDelay = getNextTargetDay(6); // 6 = Saturday
 
 			console.log(`Next Monday message delay: ${mondayDelay}ms`);
 			console.log(`Next Tuesday message delay: ${tuesdayDelay}ms`);
 			console.log(`Next Wednesday message delay: ${wednesdayDelay}ms`);
+			console.log(`Next Thursday message delay: ${thursdayDelay}ms`);
 			console.log(`Next Friday message delay: ${fridayDelay}ms`);
 			console.log(`Next Saturday message delay: ${saturdayDelay}ms`);
 		  
-			// Set timeouts to send the message on Monday and Friday
 			setTimeout(() => {
 			  sendMondayMessage();
 			  // After sending the Monday message, schedule the next Monday message
@@ -45,8 +46,7 @@ module.exports = {
 				sendMondayMessage();
 			  }, 7 * 24 * 60 * 60 * 1000); // 1 week interval for Mondays
 			}, mondayDelay);
-		
-			// Set timeouts to send the message on Monday and Friday
+
 			setTimeout(() => {
 				sendTuesdayMessage();
 				// After sending the Monday message, schedule the next Monday message
@@ -55,7 +55,6 @@ module.exports = {
 				}, 7 * 24 * 60 * 60 * 1000); // 1 week interval for Mondays
 			}, tuesdayDelay);
 			
-				// Set timeouts to send the message on Monday and Friday
 			setTimeout(() => {
 				sendWednesdayMessage();
 			  // After sending the Monday message, schedule the next Monday message
@@ -63,6 +62,14 @@ module.exports = {
 				sendWednesdayMessage();
 			  }, 7 * 24 * 60 * 60 * 1000); // 1 week interval for Mondays
 			}, wednesdayDelay);
+
+			setTimeout(() => {
+				sendThursdayMessage();
+				// After sending the Friday message, schedule the next Friday message
+				setInterval(() => {
+					sendThursdayMessage();
+				}, 7 * 24 * 60 * 60 * 1000); // 1 week interval for Fridays
+			}, thursdayDelay);
 		  
 			setTimeout(() => {
 			  sendFridayMessage();
@@ -78,7 +85,7 @@ module.exports = {
 				setInterval(() => {
 				  sendSaturdayMessage();
 				}, 7 * 24 * 60 * 60 * 1000); // 1 week interval for Fridays
-			  }, saturdayDelay);
+			}, saturdayDelay);
 		}
 
 		// Function to send a message for Monday
@@ -106,6 +113,16 @@ module.exports = {
 			const channel = client.channels.cache.get('1123143493762678786'); // Replace with your channel ID
 			if (channel) {
 			channel.send('https://tenor.com/view/akita-neru-yellow-one-wednesday-the-yellow-one-from-mesmerizer-whatever-vocaloid-gif-2813789103481908278');
+			} else {
+			console.log('Channel not found!');
+			}
+		}
+
+		// Function to send a message for Thursday
+		function sendThursdayMessage() {
+			const channel = client.channels.cache.get('1123143493762678786'); // Replace with your channel ID
+			if (channel) {
+			channel.send('https://tenor.com/view/yuyuko-touhou-fumo-fumo-plush-yuyuko-saigyouji-yuyu-bath-gif-24163441');
 			} else {
 			console.log('Channel not found!');
 			}
